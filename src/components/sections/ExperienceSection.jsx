@@ -5,7 +5,8 @@ import { TIMELINE } from '../../data/portfolioData';
 export default function ExperienceSection() {
   return (
     <section id="experience" className="relative py-24 overflow-hidden bg-dots">
-      <div className="orb orb-blue w-[350px] h-[350px] top-1/4 right-[-80px] opacity-20 pointer-events-none" />
+      <div className="orb orb-forest w-[400px] h-[400px] top-1/4 right-[-80px] opacity-25 pointer-events-none" />
+      <div className="orb orb-lime   w-[300px] h-[300px] bottom-10 left-[-60px] opacity-15 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
@@ -15,11 +16,11 @@ export default function ExperienceSection() {
             <Briefcase className="w-3.5 h-3.5" />
             Career &amp; Academic Path
           </div>
-          <h2 className="font-heading text-4xl sm:text-5xl font-bold tracking-tighter text-white mb-3">
+          <h2 className="font-heading text-4xl sm:text-5xl font-bold tracking-tighter text-[#f0fdf4] mb-3">
             Experience &amp;{' '}
             <span className="gradient-text">Education</span>
           </h2>
-          <p className="text-slate-400 text-base leading-relaxed">
+          <p className="text-slate-300 text-base leading-relaxed">
             Academic milestones, technical specialization, and open-source engineering history.
           </p>
         </div>
@@ -42,42 +43,43 @@ export default function ExperienceSection() {
                   <div className="relative z-10 flex-shrink-0">
                     <div className={`w-12 h-12 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center shadow-lg border transition-all ${
                       isLatest
-                        ? 'bg-gradient-to-br from-indigo-600 to-violet-700 border-indigo-500/50 glow-indigo'
-                        : 'glass-card border-white/[0.10]'
-                    }`}>
+                        ? 'border-lime-400 glow-lime'
+                        : 'glass-card border-lime-500/[0.15]'
+                    }`}
+                    style={isLatest ? { background: 'linear-gradient(135deg, #166534 0%, #65a30d 50%, #a3e635 100%)' } : {}}>
                       {isEducation
-                        ? <GraduationCap className={`w-5 h-5 ${isLatest ? 'text-white' : 'text-violet-400'}`} />
-                        : <Building2    className={`w-5 h-5 ${isLatest ? 'text-white' : 'text-indigo-400'}`} />
+                        ? <GraduationCap className={`w-5 h-5 ${isLatest ? 'text-[#030a04]' : 'text-lime-400'}`} />
+                        : <Building2    className={`w-5 h-5 ${isLatest ? 'text-[#030a04]' : 'text-emerald-400'}`} />
                       }
                     </div>
                   </div>
 
                   {/* Card */}
-                  <div className={`flex-1 glass-card rounded-2xl p-6 border transition-all hover:border-indigo-500/25 ${
-                    isLatest ? 'border-indigo-500/20' : 'border-white/[0.06]'
+                  <div className={`flex-1 glass-card rounded-2xl p-6 border transition-all hover:border-lime-500/35 ${
+                    isLatest ? 'border-lime-500/30' : 'border-lime-500/[0.10]'
                   }`}>
 
                     {/* Top row */}
                     <div className="flex flex-wrap items-center gap-3 mb-3">
-                      <div className="flex items-center gap-1.5 text-xs font-mono-tech text-indigo-400 font-semibold">
+                      <div className="flex items-center gap-1.5 text-xs font-mono-tech text-lime-400 font-semibold">
                         <Calendar className="w-3 h-3" />
                         {item.year}
                       </div>
-                      <span className="text-[11px] font-medium text-slate-400 bg-white/[0.04] border border-white/[0.08] px-2.5 py-0.5 rounded-lg">
+                      <span className="text-[11px] font-medium text-[#86efac] bg-lime-950/30 border border-lime-500/20 px-2.5 py-0.5 rounded-lg">
                         {item.company}
                       </span>
                       {isLatest && (
-                        <span className="flex items-center gap-1 text-[10px] font-mono-tech text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-lg">
+                        <span className="flex items-center gap-1 text-[10px] font-mono-tech text-lime-400 bg-lime-500/10 border border-lime-500/25 px-2 py-0.5 rounded-lg">
                           <span className="pulse-dot scale-75" />
                           Current
                         </span>
                       )}
                     </div>
 
-                    <h3 className="font-heading font-bold text-base sm:text-lg text-white mb-2">
+                    <h3 className="font-heading font-bold text-base sm:text-lg text-[#f0fdf4] mb-2">
                       {item.role}
                     </h3>
-                    <p className="text-sm text-slate-400 leading-relaxed">
+                    <p className="text-sm text-slate-300 leading-relaxed">
                       {item.description}
                     </p>
                   </div>

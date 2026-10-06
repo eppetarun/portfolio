@@ -20,7 +20,7 @@ export default function ProjectModal({ project, onClose }) {
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-8"
-      style={{ background: 'rgba(3,5,8,0.88)' }}
+      style={{ background: 'rgba(2,6,3,0.92)' }}
       onClick={onClose}
     >
       {/* Backdrop blur */}
@@ -28,18 +28,18 @@ export default function ProjectModal({ project, onClose }) {
 
       {/* Modal card */}
       <div
-        className="relative z-10 w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl glass-card border border-white/[0.10] shadow-[0_40px_80px_rgba(0,0,0,0.7),0_0_60px_rgba(99,102,241,0.08)] text-left"
+        className="relative z-10 w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl glass-card border border-lime-500/[0.20] shadow-[0_40px_80px_rgba(0,0,0,0.8),0_0_60px_rgba(132,204,22,0.12)] text-left"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Gradient header bar */}
-        <div className="h-1 w-full rounded-t-3xl"
-          style={{ background: 'linear-gradient(90deg, #4f46e5, #8b5cf6, #22d3ee)' }} />
+        <div className="h-1.5 w-full rounded-t-3xl"
+          style={{ background: 'linear-gradient(90deg, #166534, #84cc16, #a3e635, #14b8a6)' }} />
 
         <div className="p-6 sm:p-8">
           {/* Close */}
           <button
             onClick={onClose}
-            className="absolute top-5 right-5 z-10 p-2 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/[0.08] text-slate-400 hover:text-white transition-all"
+            className="absolute top-5 right-5 z-10 p-2 rounded-xl bg-lime-950/40 hover:bg-lime-900/60 border border-lime-500/20 hover:border-lime-400 text-slate-300 hover:text-lime-300 transition-all"
             aria-label="Close"
           >
             <X className="w-4 h-4" />
@@ -47,29 +47,29 @@ export default function ProjectModal({ project, onClose }) {
 
           {/* Badges */}
           <div className="flex flex-wrap items-center gap-2 mb-4">
-            <span className="px-3 py-1 rounded-lg text-xs font-mono-tech text-indigo-300 bg-indigo-500/10 border border-indigo-500/20">
+            <span className="px-3 py-1 rounded-lg text-xs font-mono-tech text-lime-300 bg-lime-500/10 border border-lime-500/25">
               {project.category}
             </span>
-            <span className="flex items-center gap-1 px-3 py-1 rounded-lg text-xs font-mono-tech text-slate-400 bg-white/[0.04] border border-white/[0.08]">
-              <Calendar className="w-3 h-3" />
+            <span className="flex items-center gap-1 px-3 py-1 rounded-lg text-xs font-mono-tech text-slate-300 bg-white/[0.04] border border-lime-500/[0.12]">
+              <Calendar className="w-3 h-3 text-lime-400" />
               {project.year}
             </span>
           </div>
 
           {/* Title */}
-          <h2 className="font-heading text-2xl sm:text-3xl font-bold text-white tracking-tight mb-1">
+          <h2 className="font-heading text-2xl sm:text-3xl font-bold text-[#f0fdf4] tracking-tight mb-1">
             {project.title}
           </h2>
-          <p className="text-sm font-mono-tech text-indigo-400 mb-6">{project.subtitle}</p>
+          <p className="text-sm font-mono-tech text-lime-400 mb-6">{project.subtitle}</p>
 
           {/* Thumbnail */}
-          <div className="relative w-full aspect-video rounded-2xl overflow-hidden mb-6 border border-white/[0.06] bg-[#0a0e1a]">
+          <div className="relative w-full aspect-video rounded-2xl overflow-hidden mb-6 border border-lime-500/[0.15] bg-[#060e07]">
             <img
               src={project.image}
               alt={project.title}
               className="w-full h-full object-cover object-center"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#05080f]/60 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#030a04]/80 to-transparent" />
           </div>
 
           {/* Content sections */}
@@ -77,29 +77,29 @@ export default function ProjectModal({ project, onClose }) {
 
             {/* Overview */}
             <div>
-              <h3 className="flex items-center gap-2 text-xs font-mono-tech text-slate-500 uppercase tracking-widest mb-3">
-                <Cpu className="w-3.5 h-3.5 text-indigo-400" />
+              <h3 className="flex items-center gap-2 text-xs font-mono-tech text-lime-400 uppercase tracking-widest mb-3">
+                <Cpu className="w-3.5 h-3.5 text-lime-400" />
                 System &amp; Architectural Overview
               </h3>
               <p className="text-sm text-slate-300 leading-relaxed">{project.description}</p>
             </div>
 
             {/* Metrics */}
-            <div className="px-4 py-3 rounded-xl bg-indigo-500/[0.06] border border-indigo-500/15">
-              <div className="text-[10px] font-mono-tech text-indigo-500 uppercase tracking-widest mb-1">Performance Metrics</div>
-              <div className="text-sm font-mono-tech text-indigo-300">⚡ {project.metrics}</div>
+            <div className="px-4 py-3 rounded-xl bg-lime-950/30 border border-lime-500/25">
+              <div className="text-[10px] font-mono-tech text-lime-400 uppercase tracking-widest mb-1">Performance Metrics</div>
+              <div className="text-sm font-mono-tech text-lime-200">⚡ {project.metrics}</div>
             </div>
 
             {/* Features */}
             <div>
-              <h3 className="flex items-center gap-2 text-xs font-mono-tech text-slate-500 uppercase tracking-widest mb-4">
-                <Layers className="w-3.5 h-3.5 text-violet-400" />
+              <h3 className="flex items-center gap-2 text-xs font-mono-tech text-lime-400 uppercase tracking-widest mb-4">
+                <Layers className="w-3.5 h-3.5 text-emerald-400" />
                 Key Capabilities &amp; Implementations
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {project.features.map((feat, i) => (
-                  <div key={i} className="flex items-start gap-2.5 p-3.5 rounded-xl glass-card border border-white/[0.06]">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
+                  <div key={i} className="flex items-start gap-2.5 p-3.5 rounded-xl glass-card border border-lime-500/[0.12]">
+                    <CheckCircle2 className="w-4 h-4 text-lime-400 mt-0.5 shrink-0" />
                     <span className="text-xs text-slate-300 leading-relaxed">{feat}</span>
                   </div>
                 ))}
@@ -108,8 +108,8 @@ export default function ProjectModal({ project, onClose }) {
 
             {/* Tech Stack */}
             <div>
-              <h3 className="flex items-center gap-2 text-xs font-mono-tech text-slate-500 uppercase tracking-widest mb-3">
-                <Tag className="w-3.5 h-3.5 text-cyan-400" />
+              <h3 className="flex items-center gap-2 text-xs font-mono-tech text-lime-400 uppercase tracking-widest mb-3">
+                <Tag className="w-3.5 h-3.5 text-teal-400" />
                 Technology Stack
               </h3>
               <div className="flex flex-wrap gap-2">
@@ -120,14 +120,14 @@ export default function ProjectModal({ project, onClose }) {
             </div>
 
             {/* CTA Actions */}
-            <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-white/[0.05]">
+            <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-lime-500/[0.12]">
               <a
                 href={project.githubUrl}
                 target="_blank"
                 rel="noreferrer"
                 className="btn-primary text-sm"
               >
-                <GithubIcon className="w-4 h-4" />
+                <GithubIcon className="w-4 h-4 text-[#030a04]" />
                 <span>View GitHub Repository</span>
               </a>
               {hasDemo && (
@@ -137,7 +137,7 @@ export default function ProjectModal({ project, onClose }) {
                   rel="noreferrer"
                   className="btn-ghost text-sm"
                 >
-                  <ExternalLink className="w-4 h-4" />
+                  <ExternalLink className="w-4 h-4 text-lime-400" />
                   <span>Open Live Demo</span>
                 </a>
               )}

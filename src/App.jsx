@@ -14,18 +14,8 @@ export default function App() {
   const [selectedProject, setSelectedProject] = useState(null);
 
   return (
-    <div
-      className="relative min-h-screen overflow-x-hidden"
-      style={{
-        backgroundColor: 'var(--bg-base)',
-        color: 'var(--text-primary)',
-        '--tw-selection-bg': 'rgba(99,102,241,0.25)',
-      }}
-    >
-      {/* Global selection style via CSS var trick */}
-      <style>{`
-        ::selection { background: rgba(99,102,241,0.25); color: #e0e7ff; }
-      `}</style>
+    <div className="relative min-h-screen overflow-x-hidden" style={{ backgroundColor: 'var(--bg-base)', color: 'var(--text-primary)' }}>
+      <style>{`::selection { background: rgba(132,204,22,0.28); color: #f0fdf4; }`}</style>
 
       <Navbar />
 
@@ -42,10 +32,7 @@ export default function App() {
       <Footer />
 
       {selectedProject && (
-        <ProjectModal
-          project={selectedProject}
-          onClose={() => setSelectedProject(null)}
-        />
+        <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
       )}
     </div>
   );
