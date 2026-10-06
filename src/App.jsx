@@ -14,11 +14,21 @@ export default function App() {
   const [selectedProject, setSelectedProject] = useState(null);
 
   return (
-    <div className="relative min-h-screen bg-[#090d16] text-slate-100 overflow-x-hidden selection:bg-blue-600/30 selection:text-blue-200">
-      {/* Navigation Bar */}
+    <div
+      className="relative min-h-screen overflow-x-hidden"
+      style={{
+        backgroundColor: 'var(--bg-base)',
+        color: 'var(--text-primary)',
+        '--tw-selection-bg': 'rgba(99,102,241,0.25)',
+      }}
+    >
+      {/* Global selection style via CSS var trick */}
+      <style>{`
+        ::selection { background: rgba(99,102,241,0.25); color: #e0e7ff; }
+      `}</style>
+
       <Navbar />
 
-      {/* Main Content Sections */}
       <main className="relative z-10">
         <HeroSection />
         <AboutSection />
@@ -29,10 +39,8 @@ export default function App() {
         <ContactSection />
       </main>
 
-      {/* Global Footer */}
       <Footer />
 
-      {/* Project Case Study Modal */}
       {selectedProject && (
         <ProjectModal
           project={selectedProject}

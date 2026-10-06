@@ -8,81 +8,78 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 30);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 40);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navLinks = [
-    { label: 'About', href: '#about' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Experience', href: '#experience' },
-    { label: 'GitHub Activity', href: '#github-stats' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'About',     href: '#about'       },
+    { label: 'Projects',  href: '#projects'     },
+    { label: 'Skills',    href: '#skills'       },
+    { label: 'Timeline',  href: '#experience'   },
+    { label: 'GitHub',    href: '#github-stats' },
+    { label: 'Contact',   href: '#contact'      },
   ];
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled 
-        ? 'py-3 bg-[#090d16]/90 backdrop-blur-md border-b border-slate-800/80 shadow-lg' 
-        : 'py-5 bg-transparent'
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      isScrolled
+        ? 'py-2.5 bg-[#05080f]/80 backdrop-blur-xl border-b border-white/[0.06] shadow-[0_4px_30px_rgba(0,0,0,0.4)]'
+        : 'py-4 bg-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
+
           {/* Brand Logo */}
-          <a
-            href="#"
-            className="flex items-center gap-3 group"
-          >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center font-heading font-bold text-white text-sm shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform">
+          <a href="#" className="flex items-center gap-3 group shrink-0">
+            <div className="w-9 h-9 rounded-xl flex items-center justify-center font-heading font-bold text-white text-sm shadow-lg shadow-indigo-500/20 transition-transform group-hover:scale-105"
+              style={{ background: 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #9333ea 100%)' }}>
               TE
             </div>
-            <div className="flex flex-col">
-              <span className="font-heading font-bold text-base tracking-tight text-white group-hover:text-blue-400 transition-colors">
+            <div className="flex flex-col leading-tight">
+              <span className="font-heading font-bold text-sm text-white group-hover:text-indigo-300 transition-colors">
                 {PERSONAL_INFO.name}
               </span>
-              <span className="text-xs font-mono-tech text-slate-400">
+              <span className="text-[10px] font-mono-tech text-slate-500">
                 @{PERSONAL_INFO.handle}
               </span>
             </div>
           </a>
 
-          {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center gap-1 bg-slate-900/60 p-1.5 rounded-full border border-slate-800/80 backdrop-blur-md">
+          {/* Desktop Nav */}
+          <nav className="hidden lg:flex items-center gap-0.5 bg-white/[0.03] border border-white/[0.07] p-1 rounded-2xl backdrop-blur-xl">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="px-4 py-1.5 rounded-full text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-all"
+                className="px-4 py-1.5 rounded-xl text-xs font-medium text-slate-400 hover:text-white hover:bg-white/[0.07] transition-all duration-200"
               >
                 {link.label}
               </a>
             ))}
           </nav>
 
-          {/* Right Action: GitHub Profile & Resume */}
-          <div className="hidden sm:flex items-center gap-3">
+          {/* Right Actions */}
+          <div className="hidden sm:flex items-center gap-2.5">
             <a
               href={PERSONAL_INFO.socials.github}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-medium bg-slate-900 border border-slate-700 hover:border-slate-500 text-slate-200 hover:text-white transition-all hover:bg-slate-800"
+              className="btn-ghost text-xs py-2 px-3.5"
             >
-              <GithubIcon className="w-4 h-4" />
+              <GithubIcon className="w-3.5 h-3.5" />
               <span>GitHub</span>
-              <span className="px-1.5 py-0.5 rounded-md bg-blue-500/20 text-blue-300 text-[10px] font-mono-tech">
-                33 Repos
+              <span className="px-1.5 py-0.5 rounded-md bg-indigo-500/15 text-indigo-400 text-[10px] font-mono-tech border border-indigo-500/20">
+                33+
               </span>
             </a>
 
             <a
               href="#contact"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold bg-blue-600 hover:bg-blue-500 text-white shadow-md shadow-blue-600/30 transition-all hover:scale-102"
+              className="btn-primary text-xs py-2 px-4"
             >
-              <span>Get In Touch</span>
+              <span>Hire Me</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
             </a>
           </div>
@@ -90,42 +87,42 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white"
+            className="lg:hidden p-2 rounded-xl bg-white/[0.05] border border-white/[0.08] text-slate-300 hover:text-white transition-all"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
 
-        {/* Mobile Dropdown Menu */}
+        {/* Mobile Dropdown */}
         {mobileMenuOpen && (
-          <div className="lg:hidden mt-3 p-4 rounded-2xl bg-slate-900/95 border border-slate-800 shadow-2xl backdrop-blur-xl flex flex-col gap-2">
+          <div className="lg:hidden mt-3 p-3 rounded-2xl bg-[#0a0e1a]/95 border border-white/[0.08] shadow-2xl backdrop-blur-2xl flex flex-col gap-1">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="px-4 py-2.5 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-all"
+                className="px-4 py-2.5 rounded-xl text-sm font-medium text-slate-400 hover:text-white hover:bg-white/[0.06] transition-all"
               >
                 {link.label}
               </a>
             ))}
-            <div className="pt-2 mt-2 border-t border-slate-800 flex flex-col gap-2">
+            <div className="pt-2 mt-1 border-t border-white/[0.06] flex flex-col gap-2">
               <a
                 href={PERSONAL_INFO.socials.github}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-medium bg-slate-800 text-white"
+                className="flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-medium bg-white/[0.05] border border-white/[0.08] text-white"
               >
                 <GithubIcon className="w-4 h-4" />
-                <span>Visit GitHub Profile (33 Repositories)</span>
+                <span>github.com/eppetarun</span>
               </a>
               <a
                 href="#contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-semibold bg-blue-600 text-white"
+                className="btn-primary text-xs py-2.5 justify-center"
               >
-                <span>Contact for SWE Opportunities</span>
+                <span>Get In Touch</span>
               </a>
             </div>
           </div>

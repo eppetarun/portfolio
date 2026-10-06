@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
-import { Mail, Copy, Check, Send, MapPin, Phone, MessageCircle, ExternalLink } from 'lucide-react';
+import { Mail, Copy, Check, Send, MapPin, Phone, MessageCircle, ExternalLink, Sparkles } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '../ui/SocialIcons';
 import { PERSONAL_INFO } from '../../data/portfolioData';
 
+const inputClass = 'w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.08] text-sm text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500/60 focus:bg-white/[0.05] transition-all';
+
 export default function ContactSection() {
   const [copied, setCopied] = useState(false);
-  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [sent, setSent] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: 'Software Engineering Opportunity',
-    message: ''
+    name: '', email: '', subject: 'Software Engineering Opportunity', message: '',
   });
 
-  const handleCopyEmail = () => {
+  const handleCopy = () => {
     navigator.clipboard.writeText(PERSONAL_INFO.email);
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
@@ -21,224 +20,180 @@ export default function ContactSection() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormSubmitted(true);
+    setSent(true);
     setTimeout(() => {
-      setFormSubmitted(false);
-      setFormData({
-        name: '',
-        email: '',
-        subject: 'Software Engineering Opportunity',
-        message: ''
-      });
+      setSent(false);
+      setFormData({ name: '', email: '', subject: 'Software Engineering Opportunity', message: '' });
     }, 4000);
   };
 
   return (
-    <section id="contact" className="py-20 relative tech-grid">
+    <section id="contact" className="relative py-24 overflow-hidden bg-grid">
+      <div className="orb orb-blue   w-[500px] h-[500px] top-[-50px]  right-[-100px] opacity-20 pointer-events-none" />
+      <div className="orb orb-violet w-[400px] h-[400px] bottom-[-50px] left-[-80px]  opacity-15 pointer-events-none" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Section Header */}
-        <div className="max-w-3xl mb-12 text-left">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-mono-tech text-blue-400 mb-3">
+
+        {/* Header */}
+        <div className="max-w-3xl mb-14 text-left">
+          <div className="section-label mb-4">
             <Mail className="w-3.5 h-3.5" />
-            <span>COMMUNICATION CHANNELS</span>
+            Communication Channels
           </div>
-          <h2 className="font-heading text-3xl sm:text-4xl font-bold text-white tracking-tight">
-            Get In Touch
+          <h2 className="font-heading text-4xl sm:text-5xl font-bold tracking-tighter text-white mb-3">
+            Get In{' '}
+            <span className="gradient-text">Touch</span>
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base mt-2 leading-relaxed">
-            Interested in discussing full-time software engineering roles, internships, or collaborative AI development? 
-            Feel free to reach out directly.
+          <p className="text-slate-400 text-base leading-relaxed">
+            Interested in discussing full-time SWE roles, internships, or collaborative AI projects?
+            Reach out directly — I respond within 24 hours.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start text-left">
-          
-          {/* Left Column: Direct Contact Info */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+          {/* ── Left: Contact Info ─────────────────────── */}
           <div className="lg:col-span-5 space-y-4">
-            
-            {/* Email Card */}
-            <div className="pro-card p-5 rounded-2xl bg-slate-900/70 border border-slate-800 flex items-center justify-between gap-3">
+
+            {/* Email card */}
+            <div className="glass-card rounded-2xl p-5 border border-white/[0.07] flex items-center justify-between gap-4">
               <div className="flex items-center gap-3 overflow-hidden">
-                <div className="p-3 rounded-xl bg-blue-500/10 text-blue-400 shrink-0">
+                <div className="p-2.5 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 shrink-0">
                   <Mail className="w-5 h-5" />
                 </div>
-                <div className="truncate">
-                  <div className="text-[11px] font-mono-tech text-slate-400">PRIMARY EMAIL</div>
-                  <a 
-                    href={PERSONAL_INFO.socials.email}
-                    className="text-sm font-mono-tech text-white hover:text-blue-400 transition-colors font-medium truncate block"
-                  >
+                <div className="truncate min-w-0">
+                  <div className="text-[10px] font-mono-tech text-slate-500 uppercase tracking-widest mb-0.5">Primary Email</div>
+                  <a href={PERSONAL_INFO.socials.email} className="text-sm font-mono-tech text-white hover:text-indigo-400 transition-colors truncate block">
                     {PERSONAL_INFO.email}
                   </a>
                 </div>
               </div>
-
               <button
-                onClick={handleCopyEmail}
-                className="px-3.5 py-2 rounded-xl text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white transition-all shrink-0 flex items-center gap-1.5"
-                title="Copy email to clipboard"
+                onClick={handleCopy}
+                className="px-3 py-2 rounded-xl text-xs font-medium bg-white/[0.05] hover:bg-indigo-500/20 border border-white/[0.08] hover:border-indigo-500/30 text-slate-300 hover:text-indigo-300 transition-all shrink-0 flex items-center gap-1.5"
               >
-                {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5 text-slate-400" />}
-                <span>{copied ? 'Copied' : 'Copy'}</span>
+                {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                <span>{copied ? 'Copied!' : 'Copy'}</span>
               </button>
             </div>
 
-            {/* Phone & WhatsApp Card */}
-            <div className="pro-card p-5 rounded-2xl bg-slate-900/70 border border-slate-800 flex items-center justify-between gap-3">
+            {/* Phone / WhatsApp card */}
+            <div className="glass-card rounded-2xl p-5 border border-white/[0.07] flex items-center justify-between gap-4">
               <div className="flex items-center gap-3 overflow-hidden">
-                <div className="p-3 rounded-xl bg-emerald-500/10 text-emerald-400 shrink-0">
+                <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 shrink-0">
                   <Phone className="w-5 h-5" />
                 </div>
-                <div className="truncate">
-                  <div className="text-[11px] font-mono-tech text-slate-400">PHONE & WHATSAPP</div>
-                  <div className="text-sm font-mono-tech text-white font-medium">
-                    {PERSONAL_INFO.phone}
-                  </div>
+                <div className="truncate min-w-0">
+                  <div className="text-[10px] font-mono-tech text-slate-500 uppercase tracking-widest mb-0.5">Phone &amp; WhatsApp</div>
+                  <div className="text-sm font-mono-tech text-white">{PERSONAL_INFO.phone}</div>
                 </div>
               </div>
-
               <a
                 href={PERSONAL_INFO.socials.whatsapp}
                 target="_blank"
                 rel="noreferrer"
-                className="px-3.5 py-2 rounded-xl text-xs font-medium bg-emerald-600/20 text-emerald-300 hover:bg-emerald-600 hover:text-white border border-emerald-500/30 transition-all shrink-0 flex items-center gap-1.5"
+                className="px-3 py-2 rounded-xl text-xs font-medium bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 hover:bg-emerald-600 hover:text-white transition-all shrink-0 flex items-center gap-1.5"
               >
                 <MessageCircle className="w-3.5 h-3.5" />
                 <span>Chat</span>
               </a>
             </div>
 
-            {/* Location & Academic Status Card */}
-            <div className="pro-card p-5 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-3">
-              <div className="flex items-center gap-2.5 text-xs text-slate-400">
-                <MapPin className="w-4 h-4 text-blue-400 shrink-0" />
+            {/* Location card */}
+            <div className="glass-card rounded-2xl p-5 border border-white/[0.07] space-y-2">
+              <div className="flex items-center gap-2 text-xs text-slate-400">
+                <MapPin className="w-4 h-4 text-indigo-400 shrink-0" />
                 <span>{PERSONAL_INFO.location}</span>
               </div>
               <p className="text-xs text-slate-400 leading-relaxed">
-                Undergraduate in Computer Science & Engineering at DRK Institute of Science and Technology (JNTUH). 
+                Undergraduate in CSE at DRK Institute / JNTUH.
                 Available for on-site or remote engineering roles globally.
               </p>
             </div>
 
-            {/* Social Channels */}
-            <div className="grid grid-cols-2 gap-3 pt-2">
-              <a
-                href={PERSONAL_INFO.socials.github}
-                target="_blank"
-                rel="noreferrer"
-                className="p-3.5 rounded-xl pro-card bg-slate-900/70 border border-slate-800 text-slate-300 hover:text-white hover:border-blue-500/40 transition-all flex items-center justify-between text-xs font-medium"
-              >
-                <div className="flex items-center gap-2">
-                  <GithubIcon className="w-4 h-4" />
-                  <span>GitHub</span>
-                </div>
-                <ExternalLink className="w-3.5 h-3.5 text-slate-500" />
-              </a>
-
-              <a
-                href={PERSONAL_INFO.socials.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                className="p-3.5 rounded-xl pro-card bg-slate-900/70 border border-slate-800 text-slate-300 hover:text-white hover:border-blue-500/40 transition-all flex items-center justify-between text-xs font-medium"
-              >
-                <div className="flex items-center gap-2">
-                  <LinkedinIcon className="w-4 h-4" />
-                  <span>LinkedIn</span>
-                </div>
-                <ExternalLink className="w-3.5 h-3.5 text-slate-500" />
-              </a>
+            {/* Social links */}
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                { href: PERSONAL_INFO.socials.github,   icon: <GithubIcon className="w-4 h-4" />,   label: 'GitHub'   },
+                { href: PERSONAL_INFO.socials.linkedin,  icon: <LinkedinIcon className="w-4 h-4" />,  label: 'LinkedIn' },
+              ].map(({ href, icon, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="glass-card rounded-xl p-3.5 border border-white/[0.07] hover:border-indigo-500/30 text-slate-400 hover:text-white flex items-center justify-between text-xs font-medium transition-all group"
+                >
+                  <div className="flex items-center gap-2">
+                    {icon}
+                    <span>{label}</span>
+                  </div>
+                  <ExternalLink className="w-3 h-3 text-slate-600 group-hover:text-indigo-400 transition-colors" />
+                </a>
+              ))}
             </div>
-
           </div>
 
-          {/* Right Column: Direct Message Form */}
+          {/* ── Right: Contact Form ───────────────────── */}
           <div className="lg:col-span-7">
-            <div className="pro-card p-6 sm:p-8 rounded-3xl bg-slate-900/70 border border-slate-800">
-              <h3 className="font-heading text-xl font-bold text-white mb-2">
-                Send a Direct Message
-              </h3>
-              <p className="text-xs text-slate-400 mb-6">
-                Direct transmission reaches my personal inbox at <span className="text-slate-300">{PERSONAL_INFO.email}</span>.
-              </p>
-
-              {formSubmitted ? (
-                <div className="py-12 flex flex-col items-center text-center space-y-3">
-                  <div className="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
-                    <Check className="w-6 h-6" />
-                  </div>
-                  <h4 className="font-heading text-xl font-bold text-white">
-                    Message Sent Successfully!
-                  </h4>
-                  <p className="text-xs text-slate-400 max-w-sm font-mono-tech">
-                    Thank you for reaching out. I will get back to you shortly.
+            <div className="glass-card rounded-3xl p-7 sm:p-9 border border-white/[0.07]">
+              <div className="flex items-start justify-between mb-6">
+                <div>
+                  <h3 className="font-heading text-xl font-bold text-white">Send a Direct Message</h3>
+                  <p className="text-xs text-slate-400 mt-1">
+                    Reaches my inbox at <span className="text-slate-300">{PERSONAL_INFO.email}</span>
                   </p>
+                </div>
+                <div className="p-2 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
+                  <Sparkles className="w-4 h-4" />
+                </div>
+              </div>
+
+              {sent ? (
+                <div className="py-14 flex flex-col items-center text-center gap-4">
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center glow-emerald"
+                    style={{ background: 'linear-gradient(135deg, rgba(16,185,129,0.2), rgba(5,150,105,0.1))' }}>
+                    <Check className="w-7 h-7 text-emerald-400" />
+                  </div>
+                  <div>
+                    <h4 className="font-heading text-xl font-bold text-white mb-1">Message Sent!</h4>
+                    <p className="text-xs text-slate-400">Thank you for reaching out. I'll get back to you shortly.</p>
+                  </div>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-mono-tech text-slate-400 mb-1.5">
-                        YOUR NAME
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={formData.name}
+                      <label className="block text-[10px] font-mono-tech text-slate-500 uppercase tracking-widest mb-1.5">Your Name</label>
+                      <input type="text" required value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        placeholder="Sundar Pichai"
-                        className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white focus:outline-none focus:border-blue-500 transition-colors"
-                      />
+                        placeholder="Sundar Pichai" className={inputClass} />
                     </div>
-
                     <div>
-                      <label className="block text-xs font-mono-tech text-slate-400 mb-1.5">
-                        EMAIL ADDRESS
-                      </label>
-                      <input
-                        type="email"
-                        required
-                        value={formData.email}
+                      <label className="block text-[10px] font-mono-tech text-slate-500 uppercase tracking-widest mb-1.5">Email Address</label>
+                      <input type="email" required value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="sundar@google.com"
-                        className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white focus:outline-none focus:border-blue-500 transition-colors"
-                      />
+                        placeholder="sundar@google.com" className={inputClass} />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-mono-tech text-slate-400 mb-1.5">
-                      SUBJECT / OPPORTUNITY TYPE
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      value={formData.subject}
+                    <label className="block text-[10px] font-mono-tech text-slate-500 uppercase tracking-widest mb-1.5">Subject</label>
+                    <input type="text" required value={formData.subject}
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      placeholder="Software Engineer Role / Internship"
-                      className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white focus:outline-none focus:border-blue-500 transition-colors"
-                    />
+                      placeholder="Software Engineer Role / Internship" className={inputClass} />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-mono-tech text-slate-400 mb-1.5">
-                      MESSAGE CONTENT
-                    </label>
-                    <textarea
-                      required
-                      rows={4}
-                      value={formData.message}
+                    <label className="block text-[10px] font-mono-tech text-slate-500 uppercase tracking-widest mb-1.5">Message</label>
+                    <textarea required rows={5} value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="Hi Tarun, we reviewed your GitHub repositories (MyPic & AgriPath/Orliv) and would like to discuss an opportunity..."
-                      className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white focus:outline-none focus:border-blue-500 transition-colors resize-none"
-                    />
+                      className={`${inputClass} resize-none`} />
                   </div>
 
-                  <button
-                    type="submit"
-                    className="w-full py-3 rounded-xl font-semibold text-xs sm:text-sm text-white bg-blue-600 hover:bg-blue-500 transition-all shadow-md shadow-blue-600/30 flex items-center justify-center gap-2"
-                  >
-                    <span>Transmit Message</span>
+                  <button type="submit" className="btn-primary w-full justify-center py-3.5 text-sm">
+                    <span>Send Message</span>
                     <Send className="w-4 h-4" />
                   </button>
                 </form>
@@ -247,7 +202,6 @@ export default function ContactSection() {
           </div>
 
         </div>
-
       </div>
     </section>
   );
